@@ -1,0 +1,67 @@
+body {
+	background: #D8E6FF;
+  margin: 0;
+  padding: 0;
+}
+
+.bottomMenu {
+	position: fixed;
+	bottom: 0;
+	background: #ff6b79;
+	width: 100%;
+	padding: .75em;
+	text-align: center;
+  z-index: 999;
+}
+.bottomMenu a {color: #FFF}
+
+.menuButton {
+  background: ;
+}
+
+/* Pop Card */
+.popCard {
+  position: absolute;
+  bottom: 3em;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  background: #D8E6FF;
+  height: 16em;
+  display: block;
+  margin: auto;
+  padding: 1em 1.5em;
+  border-radius: 6px;
+}
+
+
+
+
+
+
+
+
+
+/* Card Library */
+.libraryContainer {
+	background: #e95556;
+  padding: 1em;
+}
+
+.libraryCard {
+	background: #e2f4fc;
+	height: 10em;
+	padding: 1em;
+	margin-bottom: 1em;
+  list-style: none;
+}
+
+.libraryCard-purple{
+	border-top: 6px solid #8098cc;
+}
+.libraryCard-yellow{
+	border-top: 6px solid #fee841;
+}
+.libraryCard-green{
+	border-top: 6px solid #6ac8c5;
+}

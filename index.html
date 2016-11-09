@@ -1,0 +1,111 @@
+<!doctype html>
+<html class="no-js" lang="en" dir="ltr">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>❄️🎄 Santa Factory by Trufffle</title>
+	<link rel="stylesheet" href="css/foundation.min.css">
+	<link rel="stylesheet" href="css/main.css">
+  
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet">
+
+</head>
+<body>	
+  
+	<!--<div class="libraryContainer">
+		<h1>Daily Cards Library</h1>
+		<p>Find out all the cards you've collected!</p>
+		
+		<!-- Card Library Content -->
+    <!--<div id="libraryList" class="row"></div>
+		
+		<button class="close-button" data-close aria-label="Close Accessible Modal" type="button">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>-->
+	
+  <!-- Navigation Menu -->
+	<div class="row">
+		<div class="small-12 columns bottomMenu">
+      <div class="small-11 large-5 small-centered columns">
+        <div class="small-3 columns menuButton">
+          <button class=""><img src="img/button1.png"></button>
+        </div>
+        <div class="small-3 columns menuButton">
+          <button class=""><img src="img/button2.png"></button>
+        </div>
+        <div class="small-3 columns menuButton">
+          <button data-dialog="" class=""><img src="img/button3.png"></button>
+        </div>
+        <div class="small-3 columns menuButton">
+          <button class=""><img src="img/button4.png"></button>
+        </div>
+      </div>
+		</div>
+	</div><!-- End Navigation Menu -->
+  
+  <!-- Menu Content: Single Card -->
+  <div class="row">
+    <div class="small-12 large-4 small-centered columns popCard">
+      <div class="popCard-content">
+        <h3><strong>Single</strong> Daily Card</h3>
+        <p>I am the longer description of the card and I like to be long but I have to be kept as short as possible, help me become longer!</p>
+        <button class="close-button action" data-dialog-close type="button">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  
+	<!-- Cards Library -->
+  <script src="js/pixi.min.js"></script>
+  <script src="js/mainpixi.js"></script>
+  <script>
+    //Test that Pixi is working
+    console.log(PIXI);
+  </script>
+  
+	<script>
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+      if(xhr.readyState === 4 && xhr.status === 200) {
+        var cardlibrary = JSON.parse(xhr.responseText);
+        var statusHTML = '<ul class="row libraryCard-container">';
+
+        for (var i=0; i<cardlibrary.cards.length; i ++) {
+
+          if (cardlibrary.cards[i].opened === true) {
+            statusHTML += '<li class="small-4 columns libraryCard libraryCard-yellow">';
+          } else {
+            statusHTML += '<li class="small-4 columns libraryCard libraryCard-purple">';
+          }
+
+          statusHTML += '<h2>';
+          statusHTML += cardlibrary.cards[i].title;
+          statusHTML += '</h2><p>';
+          statusHTML += cardlibrary.cards[i].date;
+          statusHTML += '</p>';
+        } // end for looop
+
+        statusHTML += '</ul>';
+        document.getElementById('libraryList').innerHTML = statusHTML;
+      }
+    };
+    xhr.open('GET', 'js/json/cards.json');
+    xhr.send();
+  </script>
+	
+	<!-- Foundation script -->
+  <script src="js/vendor/jquery.js"></script>
+	<script src="js/vendor/foundation.js"></script>
+  
+  <!-- Greensock -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>
+
+	
+	
+</body>
+</html>
