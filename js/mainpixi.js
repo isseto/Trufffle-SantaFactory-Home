@@ -17,7 +17,7 @@ renderer.view.style.display = "block";
 renderer.autoResize = true;
 renderer.resize(window.innerWidth, window.innerHeight);
 //Background color
-renderer.backgroundColor = 0x061639;
+renderer.backgroundColor = 0xD8E6FF;
 //Add the canvas to the HTML document, add the renderer.view to the DOM
 document.body.appendChild(renderer.view);
 

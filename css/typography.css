@@ -1,7 +1,8 @@
 p {
-  font-family: "Comfortaa", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
-  font-size: .9rem;
-  line-height: 1.6;
+  font-family: "Raleway", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5;
   margin-bottom: 1rem;
   text-rendering: optimizeLegibility; }
 
@@ -25,7 +26,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Comfortaa", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  font-family: "Raleway", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
   font-weight: normal;
   font-style: normal;
   color: inherit;
