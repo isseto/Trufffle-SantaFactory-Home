@@ -10,8 +10,13 @@ var Container = PIXI.Container,
 
 //Create a Pixi stage and renderer 
 var stage = new PIXI.Container();
-var renderer = PIXI.autoDetectRenderer(2610, 1668);
-renderer.plugins.interaction.autoPreventDefault = false;
+//var renderer = PIXI.autoDetectRenderer(2610, 1668);
+var renderer = PIXI.autoDetectRenderer();
+renderer.view.style.position = "absolute";
+renderer.view.style.display = "block";
+renderer.autoResize = true;
+renderer.resize(window.innerWidth, window.innerHeight);
+//renderer.plugins.interaction.autoPreventDefault = false;
 //Background color
 renderer.backgroundColor = 0xD8E6FF;
 //Add the canvas to the HTML document, add the renderer.view to the DOM
@@ -50,6 +55,28 @@ function setup() {
   var basemap = new Sprite(
     resources["img/baseMap-larger.png"].texture
   );
+  // enable the bunny to be interactive... this will allow it to respond to mouse and touch events
+  basemap.interactive = true;
+  // this button mode will mean the hand cursor appears when you roll over the bunny with your mouse
+  basemap.buttonMode = true;
+  // center the bunny's anchor point
+    basemap.anchor.set(0.5);
+  // setup events
+    basemap
+        // events for drag start
+        .on('mousedown', onDragStart)
+        .on('touchstart', onDragStart)
+        // events for drag end
+        .on('mouseup', onDragEnd)
+        .on('mouseupoutside', onDragEnd)
+        .on('touchend', onDragEnd)
+        .on('touchendoutside', onDragEnd)
+        // events for drag move
+        .on('mousemove', onDragMove)
+        .on('touchmove', onDragMove);
+  // move the sprite to its designated position
+    basemap.position.x = 0;
+    basemap.position.y = 0;
   //Add the cat to the stage
   stage.addChild(basemap);
   
@@ -97,4 +124,37 @@ function animate() {
   requestAnimationFrame(animate);
   
   console.log("All files loaded");
+}
+
+
+
+//*** Map Drag Functions ***//
+//* Found in Github Issue #180
+function onDragStart(event)
+{
+    // store a reference to the data
+    // the reason for this is because of multitouch
+    // we want to track the movement of this particular touch
+    this.data = event.data;
+    this.alpha = 0.5;
+    this.dragging = this.data.getLocalPosition(this.parent);
+}
+function onDragEnd()
+{
+    this.alpha = 1;
+
+    this.dragging = false;
+
+    // set the interaction data to null
+    this.data = null;
+}
+function onDragMove()
+{
+    if (this.dragging)
+    {
+        var newPosition = this.data.getLocalPosition(this.parent);
+        this.position.x += (newPosition.x - this.dragging.x);
+        this.position.y += (newPosition.y - this.dragging.y);
+        this.dragging = newPosition;
+    }
 }
