@@ -15,8 +15,6 @@
   <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,600,700,800|Shrikhand" rel="stylesheet">
 
-
-
 </head>
 <body>	
   
@@ -33,7 +31,7 @@
 	</div>-->
 	
   <!-- Navigation Menu -->
-	<!--<div class="row">
+	<div class="row">
 		<div class="small-12 columns bottomMenu">
       <div class="small-11 large-5 small-centered columns">
         <div class="small-3 columns menuButton">
@@ -43,7 +41,7 @@
           <button class="myBtn"><img src="img/button2.png"></button>
         </div>
         <!-- Trigger/Open the Modal -->
-        <!--<div class="small-3 columns menuButton">
+        <div class="small-3 columns menuButton">
           <button class=""><img src="img/button3.png"></button>
         </div>
         <div class="small-3 columns menuButton">
@@ -54,7 +52,7 @@
 	</div><!-- End Navigation Menu -->
   
   <!-- Bottom Menu -->
-  <div class="row">
+  <!--<div class="row">
    <div class="small-12 columns bottomMenu">
     <svg id="svg" version="1.1"
        x="0px" y="0px" width="1440px" height="91.6px" viewBox="0 0 1440 91.6" style="enable-background:new 0 0 1440 91.6;"
@@ -94,7 +92,7 @@
     </svg>
     <div class="small-11 large-5 small-centered columns menuContent">
         <!-- First Button -->
-        <div class="small-3 columns menuButton">
+        <!--<div class="small-3 columns menuButton">
           <button class="">
             <svg version="1.1"
                x="0px" y="0px" width="47.7px" height="47.7px" viewBox="0 0 47.7 47.7" style="enable-background:new 0 0 47.7 47.7;"
@@ -114,7 +112,7 @@
           </button>
         </div>
         <!-- Second Button -->
-        <div class="small-3 columns menuButton">
+        <!--<div class="small-3 columns menuButton">
           <button class="modalBtn">
             <svg class="menuSVGButton" version="1.1"
                x="0px" y="0px" width="47.7px" height="47.7px" viewBox="0 0 47.7 47.7" style="enable-background:new 0 0 47.7 47.7;"
@@ -133,25 +131,27 @@
           </button>
         </div>
         <!-- Third Button -->
-        <div class="small-3 columns menuButton">
-          <button class="libraryBtn"><img src="img/button3.png"></button>
+        <!--<div class="small-3 columns menuButton">
+          <button id="libraryBtn"><img src="img/button3.png"></button>
         </div>
         <!-- Volume Button -->
-        <div class="small-3 columns menuButton">
-           <audio id="audio" src="audio/sweetgame.mp3" preload="auto" volume="0.1" loop>
-            <p>Your browser does not support the <code>audio</code> element.</p>
+        <!--<div class="small-3 columns menuButton">
+           <audio id="audio" preload="auto" volume="0.1"  loop>
+             <source src="audio/sweetgame.mp3" type="audio/mp3" />
+             <source src="audio/christmas-game-theme.mp3" type="audio/mp3" />
+             <p>Your browser does not support the <code>audio</code> element.</p>
             </audio>
-          <button><img src="img/button4.png"></button>
+          <button onclick="toggleSound()"><img src="img/button4.png"></button>
         </div>
       </div>
     </div>
-  </div>
+  </div>-->
   
   <!-- Menu Content: Single Card -->
-  <div class="row">
-    <div id="myModal" class="modal small-12 large-4 small-centered columns">
+  <!--<div class="row">
+    <div id="modalCard" class="modal small-12 large-4 small-centered columns">
       <div class="modal-content">
-        <span class="close">x</span>
+        <div id="modalSpan" class="close">x</div>
         <h5>~ Geography</h5>
         <h3>Where does Santa live?</h3>
         <p>Article description on the use of Christmas of this special 
@@ -166,7 +166,7 @@ the last line of the paragraph.</p>
   </div>
   
   <!-- Menu Content: Library -->
-  <div class="row">
+  <!--<div class="row">
     <div id="library" class="libraryContainer small-12 large-5 small-centered columns">
       <svg class="svgLibrarySnow" version="1.1"
          x="0px" y="0px" width="621.5px" height="31.8px" viewBox="0 0 621.5 31.8" style="enable-background:new 0 0 621.5 31.8;"
@@ -203,20 +203,22 @@ the last line of the paragraph.</p>
       </g>
       </svg>
       <div class="library-content">
-        <span class="close">x</span>
-      
-        <h3>Daily Cards Library</h3>
-        <p>Find out all the cards you've collected!</p>
+        <div id="librarySpan" class="close">x</div>
+        <div class="library-title">
+          <h3>Daily Cards Library</h3>
+          <p>Find out all the cards you've collected!</p>
+        </div>
+        
 
         <!-- Card Library List -->
-        <div class="row">
+        <!--<div class="row">
           <div id="libraryList" class="small-12 small-centered columns libraryList"></div>
         </div>
 
         </div><!-- End Library Content -->
         
         <!-- Badges Library -->
-        <div class="row">
+        <!--<div class="row">
           <div class="badgeLibrary small-12 columns">
             <div class="small-12 small-centered columns badgeList">
               <img src="img/emptyBadge.png">
@@ -247,8 +249,7 @@ the last line of the paragraph.</p>
       </div>
   </div>
 
-  
-  
+  <!-- ***** SCRIPTS *****-->
 	<!-- PIXI -->
   <script src="js/pixi.min.js"></script>
   <script src="js/mainpixi.js"></script>
@@ -256,44 +257,18 @@ the last line of the paragraph.</p>
     //Test that Pixi is working
     console.log(PIXI);
   </script>
-  
-  <!-- JSON Card Library -->
-	<script>
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
-      if(xhr.readyState === 4 && xhr.status === 200) {
-        var cardlibrary = JSON.parse(xhr.responseText);
-        var statusHTML = '<ul class="row libraryCard-container">';
-
-        for (var i=0; i<cardlibrary.cards.length; i ++) {
-
-          if (cardlibrary.cards[i].opened === true) {
-            statusHTML += '<li class="small-10 small-centered columns libraryCard libraryCard-yellow">';
-          } else {
-            statusHTML += '<li class="small-10 small-centered columns libraryCard libraryCard-purple">';
-          }
-
-          statusHTML += '<h2>';
-          statusHTML += cardlibrary.cards[i].title;
-          statusHTML += '</h2><p>';
-          statusHTML += cardlibrary.cards[i].date;
-          statusHTML += '</p>';
-        } // end for looop
-
-        statusHTML += '</ul>';
-        document.getElementById('libraryList').innerHTML = statusHTML;
-      }
-    };
-    xhr.open('GET', 'js/json/cards.json');
-    xhr.send();
-  </script>
 	
-	<!-- Foundation script -->
+	<!-- Foundation -->
   <script src="js/vendor/jquery.js"></script>
 	<script src="js/vendor/foundation.js"></script>
+	
+	<!-- JSON Card Library -->
+  <script src="js/cardslibrary.js"></script>
   
   <!-- Greensock -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>
+  
+  <!-- Main JS -->
   <script src="js/main.js"></script>
 
 	

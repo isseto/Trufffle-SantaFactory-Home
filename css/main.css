@@ -45,7 +45,7 @@ body {
 
 /* Modal */
 .modal {
-  position: absolute;
+  position: fixed;
   bottom: 4.5em;
   left: 0;
   right: 0;
@@ -84,7 +84,7 @@ body {
 /* Library */
 /* Card Library */
 .svgLibrarySnow {
-  position: absolute;
+  position: fixed;
   display: block;
   margin: auto;
   left: -1%;
@@ -94,8 +94,9 @@ body {
 
 .libraryContainer {
 	background: #91E3CC;
-  position: absolute;
-  bottom: 4.5em;
+  position: fixed;
+  /*bottom: 4.5em;*/
+  bottom: 0;
   left: 0;
   right: 0;
   z-index: 9;
@@ -107,7 +108,8 @@ body {
   color: #FFF;
 }
 
-.library-content {padding: 1em;}
+.library-content {padding: 0em;}
+.library-title {margin-top: 1em;}
 
 .libraryList {
   overflow: scroll;
@@ -116,8 +118,8 @@ body {
 
 .badgeLibrary {
   background: #82A3F5;
-  padding: 1em;
-  padding-bottom: 1.5em;
+  padding: .5em;
+  padding-bottom: 1em;
 }
 .badgeLibrary .badgeList {
   padding: .5em 0em;
@@ -125,9 +127,7 @@ body {
 
 .libraryCard {
 	background: #D4B5EB;
-	height: 10em;
 	padding: 1em;
-	margin-bottom: 1em;
   list-style: none;
 }
 

@@ -1,13 +1,5 @@
 ///******** Menu Button States ********///
-function toggleButton() {
-  var activeClass = document.getElementsByClassName('active');
-  if (className=="normal") {
-    div.className = "active";
-  }
-  else {
-    div.className = "normal"
-  }
-}
+
 
 ///******** Audio Control ********///
 function toggleSound() {
@@ -19,12 +11,12 @@ function toggleSound() {
 }
 
 
-///******** Cards & Library Modals ********///
+///******** Cards Modals ********///
 // Get the modal
-var modal = document.getElementById('myModal');
+var modal = document.getElementById('modalCard');
 var modalContent = document.getElementsByClassName('modal-content');
-var tl = new TimelineMax();
-tl
+var modaltl = new TimelineMax();
+modaltl
   .set(modal, {
     rotationX:90,
     transformPerspective: 100,
@@ -36,15 +28,15 @@ tl
   })
 
 // Get the button that opens the modal
-var btn = document.getElementsByClassName("modalBtn")[0];
+var modalBtn = document.getElementsByClassName("modalBtn")[0];
 
 // Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+var modalSpan = document.getElementById("modalSpan");
 
 // When the user clicks on the button, open the modal 
-btn.onclick = function() {
+modalBtn.onclick = function() {
     modal.style.display = "block";
-      tl
+      modaltl
         .fromTo(modal, .5, {
           rotationX:90,
           transformPerspective: 100,
@@ -56,9 +48,9 @@ btn.onclick = function() {
         })
         .fromTo(modalContent, .4, {y:300}, {y:0}, '-=.3')
 
-    for (var i = 0; i < btn.length; i++) {
-        var thisBtn = btn[i];
-        thisBtn.addEventListener("click", function () {
+    for (var i = 0; i < modalBtn.length; i++) {
+        var thismodalBtn = modalBtn[i];
+        thismodalBtn.addEventListener("click", function () {
             var modal = document.getElementById(this.dataset.modal);
             //modal.style.display = "block";
             modal.addEventListener("click", function () { modal.style.display = "none"; modal.removeEventListener("click"); });
@@ -67,8 +59,8 @@ btn.onclick = function() {
 }
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    tl
+modalSpan.onclick = function() {
+    modaltl
       .fromTo(modalContent, .3, {y:0}, {y:300})
       .fromTo(modal, .5, {
         rotationX:0, 
@@ -88,6 +80,79 @@ window.onclick = function(event) {
       modal.style.display = "none";
     }
 }
+
+
+
+///******** Library Effect ********///
+// Get the library
+var library = document.getElementById('library');
+var libraryContent = document.getElementsByClassName('library-content');
+var librarytl = new TimelineMax();
+librarytl
+  .set(library, {
+    rotationX:90,
+    transformPerspective: 100,
+    transformStyle:"preserve-3d",
+    transformOrigin:"50% 100%",
+  })
+  .set(libraryContent, {
+    y:300
+  })
+
+// Get the button that opens the library
+var libraryBtn = document.getElementById("libraryBtn");
+
+// Get the <span> element that closes the library
+var librarySpan = document.getElementById("librarySpan");
+
+// When the user clicks on the button, open the library 
+libraryBtn.onclick = function() {
+    library.style.display = "block";
+      librarytl
+        .fromTo(library, .5, {
+          rotationX:90,
+          transformPerspective: 100,
+          transformStyle:"preserve-3d",
+          transformOrigin:"50% 100%",
+        },{
+          rotationX:0, 
+          ease: Back.easeOut.config(.8)
+        })
+        .fromTo(libraryContent, .4, {y:300}, {y:0}, '-=.3')
+
+    for (var i = 0; i < libraryBtn.length; i++) {
+        var thislibraryBtn = libraryBtn[i];
+        thislibraryBtn.addEventListener("click", function () {
+            var library = document.getElementById(this.dataset.library);
+            //library.style.display = "block";
+            library.addEventListener("click", function () { library.style.display = "none"; library.removeEventListener("click"); });
+        }, false);
+    }
+}
+
+// When the user clicks on <span> (x), close the library
+librarySpan.onclick = function() {
+    librarytl
+      .fromTo(libraryContent, .3, {y:0}, {y:300})
+      .fromTo(library, .5, {
+        rotationX:0, 
+        toLocaleStringransformPerspective: 100,
+        transformStyle:"preserve-3d",
+        transformOrigin:"50% 100%",
+      },{
+        rotationX:90,
+        ease: Back.easeIn.config(.8)
+      }, "-=.5")
+  //library.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the library, close it
+window.onclick = function(event) {
+    if (event.target == library) {
+      library.style.display = "none";
+    }
+}
+
 
 
 

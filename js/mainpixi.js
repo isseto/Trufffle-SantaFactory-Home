@@ -10,12 +10,8 @@ var Container = PIXI.Container,
 
 //Create a Pixi stage and renderer 
 var stage = new PIXI.Container();
-var renderer = PIXI.autoDetectRenderer();
-//Make canvas fill entire window
-renderer.view.style.position = "absolute";
-renderer.view.style.display = "block";
-renderer.autoResize = true;
-renderer.resize(window.innerWidth, window.innerHeight);
+var renderer = PIXI.autoDetectRenderer(2610, 1668);
+renderer.plugins.interaction.autoPreventDefault = false;
 //Background color
 renderer.backgroundColor = 0xD8E6FF;
 //Add the canvas to the HTML document, add the renderer.view to the DOM
@@ -25,6 +21,7 @@ document.body.appendChild(renderer.view);
 //load an image and run the `setup` function when it's done
 loader
   .add([
+    "img/baseMap-larger.png",
     "sprites/SantaF_test1.png",
     "sprites/SantaF_test1.json"
   ])
@@ -49,11 +46,12 @@ var movie;
 function setup() {
   console.log("setup");
   
-  //Create the 'cat' sprite from the texture
-  //var cat = new Sprite(
-  //resources["sprites/SantaF_test1.png"].texture);
+  //BaseMap Texture
+  var basemap = new Sprite(
+    resources["img/baseMap-larger.png"].texture
+  );
   //Add the cat to the stage
-  //stage.addChild(cat);
+  stage.addChild(basemap);
   
   //Create the 'tileset' sprite from the texture
   //var texture = TextureCache["sprites/SantaF_test1.png"];
