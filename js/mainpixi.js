@@ -27,11 +27,15 @@ document.body.appendChild(renderer.view);
 loader
   .add([
     "img/baseMap-larger.png",
+    "img/bunny.png",
     "sprites/SantaF_test1.png",
     "sprites/SantaF_test1.json"
   ])
   .on("progress", loadProgressHandler)
   .load(setup);
+
+
+
 
 //Tracking Loading Progress
 function loadProgressHandler(loader, resource) {
@@ -46,12 +50,16 @@ function loadProgressHandler(loader, resource) {
 }
 
 
+
+
+
+
 var movie;
 
 function setup() {
   console.log("setup");
   
-  //BaseMap Texture
+  //*** BASEMAP TEXTURE
   var basemap = new Sprite(
     resources["img/baseMap-larger.png"].texture
   );
@@ -89,6 +97,32 @@ function setup() {
   //Position rocket sprite on the canvas
   //rocket.x=32;rocket.y=32;
   //stage.addChild(rocket);
+  
+  
+  //BUNNY
+  var bunny = Sprite.fromImage('img/bunny.png');
+  bunny.position.set(230,264);
+  bunny.interactive = true;
+  bunny.buttonMode = true;
+  bunny.on('mousedown', onDown);
+  bunny.on('touchstart', onDown);
+  stage.addChild(bunny);
+  function onDown (eventData) {
+    bunny.scale.x += 0.3;
+    bunny.scale.y += 0.3;
+  }
+  // BUNNY start animating
+  bunnyAnimate();
+  function bunnyAnimate() {
+    requestAnimationFrame(bunnyAnimate);
+    
+    //render the root container
+    renderer.render(stage);
+  }
+  
+  
+  
+  
   
   //Create an arraw of textures from an image path
   var frames = [];
